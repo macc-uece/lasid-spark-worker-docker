@@ -2,7 +2,6 @@
 # Version 0.1
 
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
-ENV REFRESHED_AT 2019-01-10
 
 FROM ubuntu/bionic:latest
 
