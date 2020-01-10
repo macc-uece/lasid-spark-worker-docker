@@ -23,7 +23,8 @@ RUN apt-get -y purge oracle-java8-installer
 RUN sudo apt-get -y purge oracle-java11-installer
 RUN sudo apt -y update; sudo apt -y install openjdk-8-jdk
 
-ENV JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:jre/bin/java::")
+#ENV JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:jre/bin/java::")
+ENV JAVA_HOME=/usr/lib/jvm/default-java
 
 # Install Mesos
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E56151BF
