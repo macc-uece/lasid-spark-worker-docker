@@ -39,7 +39,7 @@ RUN apt-get install -y python3-minimal python3-pip build-essential python3-dev p
 RUN curl https://downloads.lightbend.com/scala/"$SCALA_VERSION"/scala-"$SCALA_VERSION".deb | dpkg -i scala-"$SCALA_VERSION".deb
 
 # Install Spark
-    	cd /usr/lib
+RUN cd /usr/lib
 RUN 'curl http://ftp.unicamp.br/pub/apache/spark/spark-'"$SPARK_VERSION"'/spark-'"$SPARK_VERSION"'-bin-hadoop'"$HADOOP_VERSION"'.tgz' \
     | tar -xzC /usr/lib && mv /usr/lib/spark* /usr/lib/spark
 RUN rm -f 'spark-'"$SPARK_VERSION"'-bin-hadoop'"$HADOOP_VERSION"'.tgz'
