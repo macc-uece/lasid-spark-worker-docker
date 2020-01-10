@@ -48,13 +48,7 @@ RUN rm -f 'spark-'"$SPARK_VERSION"'-bin-hadoop'"$HADOOP_VERSION"'.tgz'
 # Install Pyspark
 RUN pip3 install pyspark
 
-
-echo "export PYSPARK_PYTHON=python3" >> .bashrc
-
-	echo "export PATH=\$PATH:/usr/lib/spark/bin/" >> .bashrc
-	echo "export SPARK_HOME=/usr/lib/spark" >> .bashrc
-
-
+# Cleaning apt
 RUN apt-get clean
 
 COPY spark-conf/* /opt/spark/conf/
