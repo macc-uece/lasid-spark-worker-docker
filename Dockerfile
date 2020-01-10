@@ -3,7 +3,7 @@
 
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
 
-FROM ubuntu/bionic:latest
+FROM ubuntu:bionic
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DAEMON_RUN=true
