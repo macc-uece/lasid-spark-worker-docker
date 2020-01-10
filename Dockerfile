@@ -4,7 +4,7 @@
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
 ENV REFRESHED_AT 2019-01-10
 
-FROM ubuntu:bionic
+FROM ubuntu/bionic:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DAEMON_RUN=true
