@@ -14,9 +14,10 @@ ENV SCALA_HOME=/usr/share/scala
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get autoremove -y
+RUN apt-get -y install apt-utils
 
 # Install Java 
-RUN sudo apt -y install openjdk-8-jdk
+RUN apt-get -y install openjdk-8-jdk
 
 #ENV JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:jre/bin/java::")
 ENV JAVA_HOME=/usr/lib/jvm/default-java
