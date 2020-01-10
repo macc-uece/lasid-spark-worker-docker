@@ -1,56 +1,65 @@
+# Dockerfile for LASID Spark Mesos Worker Docker
 # Version 0.1
-FROM ipython/scipystack
 
-MAINTAINER Bernardo Gomez Palacio "bernardo.gomezpalacio@gmail.com"
-ENV REFRESHED_AT 2015-03-19
+MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
+ENV REFRESHED_AT 2019-01-10
+
+FROM ubuntu:bionic
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV DAEMON_RUN=true
+ENV SPARK_VERSION="2.4.4"
+ENV HADOOP_VERSION="2.7"
+ENV SCALA_VERSION="2.12.10"
+ENV SCALA_HOME=/usr/share/scala
 
-RUN apt-get update
-RUN apt-get dist-upgrade -y
+RUN apt update
+RUN apt upgrade -y
+RUN apt autoremove -y
 
-# RUN echo "deb http://repos.mesosphere.io/ubuntu/ trusty main" > /etc/apt/sources.list.d/mesosphere.list
-# RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
-# RUN apt-get -y update
-# RUN apt-get -y install mesos=0.26.0-0.2.145.ubuntu1404
+# Install Java 
+RUN apt-get -y purge openjdk*
+RUN apt-get -y purge oracle-java8-installer
+RUN sudo apt-get -y purge oracle-java11-installer
+RUN sudo apt -y update; sudo apt -y install openjdk-8-jdk
 
-# Setup
-RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
-RUN export OS_DISTRO=$(lsb_release -is | tr '[:upper:]' '[:lower:]') && \
-    export OS_CODENAME=$(lsb_release -cs) && \
-    echo "deb http://repos.mesosphere.io/${OS_DISTRO} ${OS_CODENAME} main" | \
-    tee /etc/apt/sources.list.d/mesosphere.list &&\
-    apt-get -y update
+ENV JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:jre/bin/java::")
 
+# Install Mesos
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E56151BF
+RUN echo "deb http://repos.mesosphere.com/ubuntu xenial main" | tee /etc/apt/sources.list.d/mesosphere.list	
+RUN add-apt-repository -y ppa:xapienz/curl34
+RUN apt-get -y update
+RUN apt install libcurl4 libevent-dev libcurl4-openssl-dev -y
 RUN apt-get -y install mesos
 
-RUN apt-get install -y python libnss3 curl
+# Install Python
+RUN apt-get install -y python3-minimal python3-pip build-essential python3-dev python3-setuptools libnss3 curl
 
-#RUN add-apt-repository ppa:webupd8team/java -y && \
-#    apt-get install oracle-java8-installer && \
-#    apt-get install oracle-java8-set-default
+# Install Scala
+RUN curl https://downloads.lightbend.com/scala/"$SCALA_VERSION"/scala-"$SCALA_VERSION".deb | dpkg -i scala-"$SCALA_VERSION".deb
 
-# echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
-# echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
-# apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
-# apt-get update
-# apt-get install oracle-java8-installer
+# Install Spark
+    	cd /usr/lib
+RUN 'curl http://ftp.unicamp.br/pub/apache/spark/spark-'"$SPARK_VERSION"'/spark-'"$SPARK_VERSION"'-bin-hadoop'"$HADOOP_VERSION"'.tgz' \
+    | tar -xzC /usr/lib && mv /usr/lib/spark* /usr/lib/spark
+RUN rm -f 'spark-'"$SPARK_VERSION"'-bin-hadoop'"$HADOOP_VERSION"'.tgz'
 
-RUN curl http://d3kbcqa49mib13.cloudfront.net/spark-1.6.0-bin-hadoop2.6.tgz \
-    | tar -xzC /opt && \
-    mv /opt/spark* /opt/spark
+# Install Pyspark
+RUN pip3 install pyspark
+
+
+echo "export PYSPARK_PYTHON=python3" >> .bashrc
+
+	echo "export PATH=\$PATH:/usr/lib/spark/bin/" >> .bashrc
+	echo "export SPARK_HOME=/usr/lib/spark" >> .bashrc
+
 
 RUN apt-get clean
-
-# Fix pypspark six error.
-RUN pip2 install -U six
-RUN pip2 install boto
-RUN pip2 install msgpack-python
-RUN pip2 install avro
 
 COPY spark-conf/* /opt/spark/conf/
 COPY scripts /scripts
 
-ENV SPARK_HOME /opt/spark
+ENV SPARK_HOME /usr/lib/spark
 
 ENTRYPOINT ["/scripts/run.sh"]
