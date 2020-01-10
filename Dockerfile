@@ -18,7 +18,7 @@ RUN apt-get -y install gnupg2 software-properties-common
 RUN apt-get -yq install apt-utils
 
 # Install Java 
-RUN apt-get -y install openjdk-8-jdk
+RUN apt-get -y install openjdk-8-jdk --fix-missing
 
 #ENV JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:jre/bin/java::")
 ENV JAVA_HOME=/usr/lib/jvm/default-java
