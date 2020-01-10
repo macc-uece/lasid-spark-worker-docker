@@ -4,7 +4,7 @@ FROM ubuntu:bionic
 
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
 
-ENV DEBIAN_FRONTEND noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 ENV DAEMON_RUN=true
 ARG SPARK_VERSION="2.4.4"
 ARG HADOOP_VERSION="2.7"
@@ -14,7 +14,8 @@ ARG SCALA_HOME=/usr/share/scala
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get autoremove -y
-RUN apt-get -y install apt-utils gnupg2 software-properties-common
+RUN apt-get -y install gnupg2 software-properties-common
+RUN apt-get -yq install apt-utils
 
 # Install Java 
 RUN apt-get -y install openjdk-8-jdk
