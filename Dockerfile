@@ -14,7 +14,7 @@ ENV SCALA_HOME=/usr/share/scala
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get autoremove -y
-RUN apt-get -y install apt-utils
+RUN apt-get -y install apt-utils gnupg2
 
 # Install Java 
 RUN apt-get -y install openjdk-8-jdk
