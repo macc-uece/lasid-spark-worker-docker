@@ -11,15 +11,12 @@ ENV HADOOP_VERSION="2.7"
 ENV SCALA_VERSION="2.12.10"
 ENV SCALA_HOME=/usr/share/scala
 
-RUN apt update
-RUN apt upgrade -y
-RUN apt autoremove -y
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get autoremove -y
 
 # Install Java 
-RUN apt-get -y purge openjdk*
-RUN apt-get -y purge oracle-java8-installer
-RUN sudo apt-get -y purge oracle-java11-installer
-RUN sudo apt -y update; sudo apt -y install openjdk-8-jdk
+RUN sudo apt -y install openjdk-8-jdk
 
 #ENV JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:jre/bin/java::")
 ENV JAVA_HOME=/usr/lib/jvm/default-java
@@ -29,7 +26,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E56151BF
 RUN echo "deb http://repos.mesosphere.com/ubuntu xenial main" | tee /etc/apt/sources.list.d/mesosphere.list	
 RUN add-apt-repository -y ppa:xapienz/curl34
 RUN apt-get -y update
-RUN apt install libcurl4 libevent-dev libcurl4-openssl-dev -y
+RUN apt-get install libcurl4 libevent-dev libcurl4-openssl-dev -y
 RUN apt-get -y install mesos
 
 # Install Python
