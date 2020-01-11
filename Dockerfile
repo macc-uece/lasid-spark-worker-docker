@@ -24,7 +24,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E56151BF
 RUN echo "deb http://repos.mesosphere.com/ubuntu xenial main" | tee /etc/apt/sources.list.d/mesosphere.list	
 RUN add-apt-repository -y ppa:xapienz/curl34
 RUN apt-get -y update
-RUN apt-get install -y libcurl4 # libevent-dev libcurl4-openssl-dev
+RUN apt-get install -y libcurl4 libevent-dev libcurl4-openssl-dev
 RUN apt-get install -y mesos
 
 # Install Python
