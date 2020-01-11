@@ -66,4 +66,7 @@ ENV SPARK_HOME=/usr/lib/spark
 ENV PYSPARK_PYTHON=python3
 ENV PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python/:$PYTHONPATH
 
+EXPOSE 4040
+EXPOSE 4041
+
 ENTRYPOINT ["/scripts/run.sh"]
