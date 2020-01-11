@@ -39,8 +39,8 @@ RUN wget --no-verbose https://downloads.lightbend.com/scala/2.12.10/scala-2.12.1
 RUN rm -f scala-2.12.10.deb
 
 # Install Spark
-RUN wget --no-verbose https://www.apache.org/dyn/closer.lua/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz
-RUN tar -xz  spark-2.4.4-bin-hadoop2.7.tgz -C /usr/lib && \
+RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz
+RUN tar -xfz spark-2.4.4-bin-hadoop2.7.tgz -C /usr/lib && \
     mv /usr/lib/spark* /usr/lib/spark && \
     echo "export PATH=$PATH:/usr/lib/spark/bin" >> /etc/profile.d/spark.sh && \
     echo "export SPARK_HOME=/usr/lib/spark" >> /etc/profile.d/spark.sh
