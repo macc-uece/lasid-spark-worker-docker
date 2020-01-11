@@ -17,7 +17,7 @@ RUN apt-get -yq install apt-utils
 
 # Install Java 
 RUN apt-get -y install openjdk-8-jdk --fix-missing
-ENV JAVA_HOME=/usr/lib/jvm/default-java
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 # Install Mesos
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E56151BF
