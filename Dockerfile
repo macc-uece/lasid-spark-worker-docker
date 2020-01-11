@@ -41,14 +41,16 @@ RUN rm -f scala-2.12.10.deb
 # Install Spark
 RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz && \
     tar -xzf /spark-2.4.4-bin-hadoop2.7.tgz && \
-    mv /spark-2.4.4-bin-hadoop2.7 /usr/lib/spark && \
-    echo "export PATH=$PATH:/usr/lib/spark/bin" >> /etc/profile.d/spark.sh && \
-    echo "export SPARK_HOME=/usr/lib/spark" >> /etc/profile.d/spark.sh
+    mv /spark-2.4.4-bin-hadoop2.7 /usr/lib/spark
 RUN rm -f spark-2.4.4-bin-hadoop2.7.tgz
 
+#    echo "export PATH=$PATH:/usr/lib/spark/bin" >> /etc/profile.d/spark.sh && \
+#    echo "export SPARK_HOME=/usr/lib/spark" >> /etc/profile.d/spark.sh
+
 # Install Pyspark
-RUN pip3 install pyspark && \
-    echo "export PYSPARK_PYTHON=python3" >> /etc/profile.d/spark.sh
+RUN pip3 install pyspark
+
+#    echo "export PYSPARK_PYTHON=python3" >> /etc/profile.d/spark.sh
 
 # Cleaning apt
 RUN apt-get autoremove -y
