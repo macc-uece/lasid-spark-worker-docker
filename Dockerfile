@@ -60,4 +60,9 @@ RUN apt-get clean
 COPY spark-conf/* /usr/lib/spark/conf/
 COPY scripts /scripts
 
+ENV MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so
+ENV PYSPARK_PYTHON=python3
+ENV PATH=$PATH:/usr/lib/spark/bin/
+ENV SPARK_HOME=/usr/lib/spark
+
 ENTRYPOINT ["/scripts/run.sh"]
