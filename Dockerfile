@@ -6,9 +6,6 @@ MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV DAEMON_RUN=true
-ARG SPARK_VERSION="2.4.4"
-ARG HADOOP_VERSION="2.7"
-ENV SCALA_VERSION=2.12.10
 ARG SCALA_HOME=/usr/share/scala
 
 RUN apt-get update
@@ -20,7 +17,6 @@ RUN apt-get -yq install apt-utils
 # Install Java 
 RUN apt-get -y install openjdk-8-jdk --fix-missing
 
-#ENV JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:jre/bin/java::")
 ENV JAVA_HOME=/usr/lib/jvm/default-java
 
 # Install Mesos
@@ -35,13 +31,13 @@ RUN apt-get -y install mesos
 RUN apt-get install -y python3-minimal python3-pip build-essential python3-dev python3-setuptools libnss3 curl
 
 # Install Scala
-RUN curl https://downloads.lightbend.com/scala/${SCALA_VERSION}/scala-$SCALA_VERSION.deb && dpkg -i scala-$SCALA_VERSION.deb
+RUN curl https://downloads.lightbend.com/scala/2.12.10/scala-2.12.10.deb && dpkg -i scala-2.12.10.deb
 
 # Install Spark
 RUN cd /usr/lib
-RUN 'curl http://ftp.unicamp.br/pub/apache/spark/spark-'"$SPARK_VERSION"'/spark-'"$SPARK_VERSION"'-bin-hadoop'"$HADOOP_VERSION"'.tgz' \
-    | tar -xzC /usr/lib && mv /usr/lib/spark* /usr/lib/spark
-RUN rm -f 'spark-'"$SPARK_VERSION"'-bin-hadoop'"$HADOOP_VERSION"'.tgz'
+RUN curl http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz \
+    && tar -xzC /usr/lib && mv /usr/lib/spark* /usr/lib/spark
+RUN rm -f spark-2.4.4-bin-hadoop2.7.tgz
 
 # Install Pyspark
 RUN pip3 install pyspark
