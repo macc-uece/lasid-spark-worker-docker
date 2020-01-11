@@ -31,12 +31,12 @@ RUN apt-get install -y mesos
 RUN apt-get install -y python3-minimal python3-pip build-essential python3-dev python3-setuptools libnss3 curl wget
 
 # Install Scala
-RUN wget https://downloads.lightbend.com/scala/2.12.10/scala-2.12.10.deb && dpkg -i scala-2.12.10.deb
+RUN curl -O https://downloads.lightbend.com/scala/2.12.10/scala-2.12.10.deb && dpkg -i scala-2.12.10.deb
 RUN rm -f scala-2.12.10.deb
 
 # Install Spark
 RUN cd /usr/lib
-RUN curl http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz \
+RUN curl -O http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz \
     && tar -xzC /usr/lib && mv /usr/lib/spark* /usr/lib/spark
 RUN rm -f spark-2.4.4-bin-hadoop2.7.tgz
 
