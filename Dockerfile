@@ -48,7 +48,7 @@ RUN rm -f spark-2.4.4-bin-hadoop2.7.tgz
 #    echo "export SPARK_HOME=/usr/lib/spark" >> /etc/profile.d/spark.sh
 
 # Install Pyspark
-RUN pip3 install pyspark
+#RUN pip3 install pyspark
 
 #    echo "export PYSPARK_PYTHON=python3" >> /etc/profile.d/spark.sh
 
