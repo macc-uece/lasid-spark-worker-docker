@@ -61,8 +61,9 @@ COPY spark-conf/* /usr/lib/spark/conf/
 COPY scripts /scripts
 
 ENV MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so
-ENV PYSPARK_PYTHON=python3
 ENV PATH=$PATH:/usr/lib/spark/bin/
 ENV SPARK_HOME=/usr/lib/spark
+ENV PYSPARK_PYTHON=python3
+ENV PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python/:$PYTHONPATH
 
 ENTRYPOINT ["/scripts/run.sh"]
