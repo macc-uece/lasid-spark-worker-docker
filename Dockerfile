@@ -24,15 +24,15 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E56151BF
 RUN echo "deb http://repos.mesosphere.com/ubuntu xenial main" | tee /etc/apt/sources.list.d/mesosphere.list	
 RUN add-apt-repository -y ppa:xapienz/curl34
 RUN apt-get -y update
-RUN apt-get install libcurl4 libevent-dev libcurl4-openssl-dev -y
-RUN apt-get -y install mesos
+RUN apt-get install -y libcurl4 libevent-dev libcurl4-openssl-dev
+RUN apt-get install -y mesos
 
 # Install Python
-RUN apt-get install -y python3-minimal python3-pip build-essential python3-dev python3-setuptools libnss3 curl
+RUN apt-get install -y python3-minimal python3-pip build-essential python3-dev python3-setuptools libnss3 curl wget
 
 # Install Scala
-RUN curl https://downloads.lightbend.com/scala/2.12.10/scala-2.12.10.deb
-RUN dpkg -i scala-2.12.10.deb
+RUN curl https://downloads.lightbend.com/scala/2.12.10/scala-2.12.10.deb && dpkg -i scala-2.12.10.deb
+RUN rm -f scala-2.12.10.deb
 
 # Install Spark
 RUN cd /usr/lib
