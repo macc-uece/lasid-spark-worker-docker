@@ -31,7 +31,8 @@ RUN apt-get -y install mesos
 RUN apt-get install -y python3-minimal python3-pip build-essential python3-dev python3-setuptools libnss3 curl
 
 # Install Scala
-RUN curl https://downloads.lightbend.com/scala/2.12.10/scala-2.12.10.deb && dpkg -i scala-2.12.10.deb
+RUN curl https://downloads.lightbend.com/scala/2.12.10/scala-2.12.10.deb
+RUN dpkg -i scala-2.12.10.deb
 
 # Install Spark
 RUN cd /usr/lib
