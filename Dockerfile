@@ -24,12 +24,12 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E56151BF
 RUN echo "deb http://repos.mesosphere.com/ubuntu xenial main" | tee /etc/apt/sources.list.d/mesosphere.list	
 RUN add-apt-repository -y ppa:xapienz/curl34
 RUN apt-get -y update
-RUN apt-get install -y libcurl4 libevent-dev libcurl4-openssl-dev
+RUN apt-get install -y libcurl4 # libevent-dev libcurl4-openssl-dev
 RUN apt-get install -y mesos
 
 # Install Python
-RUN apt-get install -y python3-minimal python3-pip  libnss3 --fix-missing
-# python3-dev python3-setuptools
+RUN apt-get install -y python3-minimal python3-pip libnss3 
+# python3-dev python3-setuptools --fix-missing
 
 WORKDIR /
 
@@ -39,15 +39,16 @@ RUN wget --no-verbose https://downloads.lightbend.com/scala/2.12.10/scala-2.12.1
 RUN rm -f scala-2.12.10.deb
 
 # Install Spark
-RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz
-RUN tar -xzf /spark-2.4.4-bin-hadoop2.7.tgz && \
+RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz && \
+    tar -xzf /spark-2.4.4-bin-hadoop2.7.tgz && \
     mv /spark-2.4.4-bin-hadoop2.7 /usr/lib/spark && \
     echo "export PATH=$PATH:/usr/lib/spark/bin" >> /etc/profile.d/spark.sh && \
     echo "export SPARK_HOME=/usr/lib/spark" >> /etc/profile.d/spark.sh
 RUN rm -f spark-2.4.4-bin-hadoop2.7.tgz
 
 # Install Pyspark
-RUN pip3 install pyspark
+RUN pip3 install pyspark && \
+    echo "export PYSPARK_PYTHON=python3" >> /etc/profile.d/spark.sh
 
 # Cleaning apt
 RUN apt-get autoremove -y
