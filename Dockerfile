@@ -36,7 +36,7 @@ RUN rm -f scala-2.12.10.deb
 
 # Install Spark
 #RUN cd /usr/lib
-RUN curl -O http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz && tar -xzC /usr/lib
+RUN curl http://ftp.unicamp.br/pub/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz && tar -xzC /usr/lib
 RUN mv /usr/lib/spark* /usr/lib/spark
 RUN rm -f spark-2.4.4-bin-hadoop2.7.tgz
 
