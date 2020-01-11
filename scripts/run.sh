@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SPARK_MASTER=${SPARK_MASTER:-local}
+SPARK_MASTER=${SPARK_MASTER:-localhost}
 MESOS_EXECUTOR_CORE=${MESOS_EXECUTOR_CORE:-0.1}
 SPARK_IMAGE=${SPARK_IMAGE:-lasid/spark:lastest}
 CURRENT_IP=$(hostname -i)
