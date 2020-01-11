@@ -11,7 +11,7 @@ ARG SCALA_HOME=/usr/share/scala
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get autoremove -y
-RUN apt-get -y install gnupg2 software-properties-common
+RUN apt-get -y install gnupg2 software-properties-common build-essential curl
 RUN apt-get -yq install apt-utils
 
 # Install Java 
@@ -28,7 +28,7 @@ RUN apt-get install -y libcurl4 libevent-dev libcurl4-openssl-dev
 RUN apt-get install -y mesos
 
 # Install Python
-RUN apt-get install -y python3-minimal python3-pip build-essential python3-dev python3-setuptools libnss3 curl
+RUN apt-get install -y python3-minimal python3-pip python3-dev python3-setuptools libnss3 --fix-missing
 
 # Install Scala
 RUN curl -O https://downloads.lightbend.com/scala/2.12.10/scala-2.12.10.deb && dpkg -i scala-2.12.10.deb
