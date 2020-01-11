@@ -54,7 +54,7 @@ RUN apt-get autoremove -y
 RUN apt-get clean
 
 # Set environment
-COPY spark-conf/* /opt/spark/conf/
+COPY spark-conf/* /usr/lib/spark/conf/
 COPY scripts /scripts
 
 ENTRYPOINT ["/scripts/run.sh"]
