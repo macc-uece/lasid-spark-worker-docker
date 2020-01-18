@@ -1,4 +1,4 @@
-FROM spydernaz/spark-base:latest
+FROM lasid/spark-base:latest
 
 COPY start-worker.sh /
 
