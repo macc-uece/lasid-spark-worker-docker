@@ -5,7 +5,7 @@
 
 mkdir -p $SPARK_WORKER_LOG
 
-export SPARK_HOME=/spark
+export SPARK_HOME=/usr/lib/spark
 
 ln -sf /dev/stdout $SPARK_WORKER_LOG/spark-worker.out
 
