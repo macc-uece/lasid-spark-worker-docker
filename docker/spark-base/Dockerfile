@@ -14,7 +14,9 @@ ENV SCALA_VERSION=2.12.10
 ENV SCALA_HOME=/usr/share/scala
 ENV SPARK_HOME=/usr/lib/spark
 
-RUN apt-get update && apt -y upgrade && apt-get install -y curl vim wget software-properties-common ssh net-tools ca-certificates jq
+RUN apt-get update && \
+    apt -y upgrade && \
+    apt-get install -y curl vim wget software-properties-common ssh net-tools ca-certificates jq java8-runtime-headless
 
 #     apt update && apt -y upgrade \
 #     apt install -y wget ca-certificates && \
