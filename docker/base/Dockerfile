@@ -39,9 +39,11 @@ RUN cd "/tmp" && \
 
 
 # Add Dependencies for PySpark
-RUN apt-get install -y python3 python3-pip python3-numpy python3-matplotlib python3-scipy python3-pandas python3-simpy
-RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1
-
+RUN apt-get install -y python3 #python3-pip python3-numpy python3-matplotlib python3-scipy python3-pandas python3-simpy
+RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+ 
 #Scala instalation
 #RUN export PATH="/usr/local/sbt/bin:$PATH" &&  apt update && apt install ca-certificates wget tar && mkdir -p "/usr/local/sbt" && wget -qO - --no-check-certificate "https://github.com/sbt/sbt/releases/download/v1.2.8/sbt-1.2.8.tgz" | tar xz -C /usr/local/sbt --strip-components=1 && sbt sbtVersion
 
