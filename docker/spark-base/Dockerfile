@@ -16,7 +16,7 @@ ENV SPARK_HOME=/usr/lib/spark
 
 RUN apt-get update && \
     apt -y upgrade && \
-    apt-get install -y curl vim wget software-properties-common ssh net-tools ca-certificates jq java8-runtime-headless
+    apt-get install -y curl vim wget software-properties-common ssh net-tools ca-certificates jq openjdk-8-jre-headless
 
 #     apt update && apt -y upgrade \
 #     apt install -y wget ca-certificates && \
