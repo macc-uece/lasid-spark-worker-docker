@@ -21,9 +21,8 @@ RUN apt-get update && apt -y upgrade && apt-get install -y curl vim wget softwar
 #     apt install -y curl bash jq && \
 RUN cd "/tmp" && \
     wget --no-verbose https://downloads.lightbend.com/scala/${SCALA_VERSION}/scala-${SCALA_VERSION}.deb &&  \
-    dpkg -i scala-${SCALA_VERSION}.deb
-    rm -f scala-2.12.10.deb
-    rm -rf "/tmp/"*
+    dpkg -i scala-${SCALA_VERSION}.deb && \
+    rm -f scala-${SCALA_VERSION}.deb
 
 # RUN apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
 #     apk add --no-cache bash curl jq && \
@@ -40,17 +39,17 @@ RUN cd "/tmp" && \
 
 # Add Dependencies for PySpark
 RUN apt-get install -y python3 #python3-pip python3-numpy python3-matplotlib python3-scipy python3-pandas python3-simpy
-RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
  
 #Scala instalation
 #RUN export PATH="/usr/local/sbt/bin:$PATH" &&  apt update && apt install ca-certificates wget tar && mkdir -p "/usr/local/sbt" && wget -qO - --no-check-certificate "https://github.com/sbt/sbt/releases/download/v1.2.8/sbt-1.2.8.tgz" | tar xz -C /usr/local/sbt --strip-components=1 && sbt sbtVersion
 
-RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
-    && tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
-    && mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /usr/lib/spark \
-    && rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
+RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
+    tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
+    mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /usr/lib/spark && \
+    rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
 # Fix the value of PYTHONHASHSEED
 # Note: this is needed when you use Python 3.3 or greater
