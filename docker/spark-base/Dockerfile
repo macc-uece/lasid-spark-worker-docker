@@ -1,6 +1,6 @@
 # Dockerfile for LASID Docker Spark Worker Docker Base Image
-# Version 0.1
-FROM openjdk:8     #-alpine
+# Version 0.1    #-alpine
+FROM openjdk:8
 
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
 LABEL image=LASID-Spark-Worker
