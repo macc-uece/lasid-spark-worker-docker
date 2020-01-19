@@ -1,3 +1,4 @@
+# Build Spark Docker Worker
 FROM lasid/spark-base
 
 COPY start-worker.sh /
