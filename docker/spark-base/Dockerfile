@@ -15,8 +15,9 @@ ENV SCALA_HOME=/usr/share/scala
 ENV SPARK_HOME=/usr/lib/spark
 
 RUN apt-get update && \
-    apt -y upgrade && \
-    apt-get install -y curl vim wget software-properties-common ssh net-tools ca-certificates jq openjdk-8-jre-headless
+    apt-get -y upgrade && \
+    apt-get install -y vim wget software-properties-common openjdk-8-jre-headless
+# ssh net-tools ca-certificates jq curl
 
 #     apt update && apt -y upgrade \
 #     apt install -y wget ca-certificates && \
@@ -39,8 +40,8 @@ RUN cd "/tmp" && \
 #     rm -rf "/tmp/"*
 
 
-# Add Dependencies for PySpark
-RUN apt-get install -y python3 #python3-pip python3-numpy python3-matplotlib python3-scipy python3-pandas python3-simpy
+# Add Dependencies for PySpark #python3-pip python3-numpy python3-matplotlib python3-scipy python3-pandas python3-simpy
+RUN apt-get install -y python3 
 RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
