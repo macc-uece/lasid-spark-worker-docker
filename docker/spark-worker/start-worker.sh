@@ -2,8 +2,10 @@
 
 export SPARK_HOME=/usr/lib/spark
 
-. "/spark/sbin/spark-config.sh"
-. "/spark/bin/load-spark-env.sh"
+cd $SPARK_HOME
+
+. "./sbin/spark-config.sh"
+. "./bin/load-spark-env.sh"
 
 mkdir -p $SPARK_WORKER_LOG
 
