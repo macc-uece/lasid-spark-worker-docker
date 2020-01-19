@@ -1,4 +1,4 @@
-FROM lasid/spark-base:latest
+FROM lasid/spark-base
 
 COPY start-worker.sh /
 
