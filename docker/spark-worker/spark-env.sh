@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export JAVA_HOME=/usr/local/openjdk-8/
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 export PYSPARK_PYTHON=/usr/bin/python
 export PYSPARK_DRIVER_PYTHON=/usr/bin/python
 export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
