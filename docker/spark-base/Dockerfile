@@ -46,7 +46,7 @@ RUN cd "/tmp" && \
 
 
 # Add Dependencies for PySpark #python3-pip python3-numpy python3-matplotlib python3-scipy python3-pandas python3-simpy
-RUN apt-get install -y python3 
+RUN apt-get install -y python3
 RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
