@@ -22,8 +22,7 @@ RUN apt-get update && \
 
 # Install Java 
 RUN apt-get -y install openjdk-8-jre-headless gnupg2 --fix-missing
-#ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
-
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 #     apt update && apt -y upgrade \
 #     apt install -y wget ca-certificates && \
