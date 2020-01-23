@@ -1,11 +1,12 @@
 # Dockerfile for LASID Docker Spark Worker Docker Base Image
 # Version 0.1    #-alpine
-FROM openjdk:8
+#FROM openjdk:8
+FROM ubuntu:bionic
 
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
 LABEL image=LASID-Spark-Worker
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
-LABEL version="0.2"
+LABEL version="0.3"
 
 ENV DAEMON_RUN=true
 ENV SPARK_VERSION=2.4.4
@@ -16,8 +17,13 @@ ENV SPARK_HOME=/usr/lib/spark
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    apt-get install -y vim wget software-properties-common openjdk-8-jre-headless
+    apt-get install -y wget software-properties-common 
 # ssh net-tools ca-certificates jq curl
+
+# Install Java 
+RUN apt-get -y install openjdk-8-jre-headless gnupg2 --fix-missing
+#ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+
 
 #     apt update && apt -y upgrade \
 #     apt install -y wget ca-certificates && \
