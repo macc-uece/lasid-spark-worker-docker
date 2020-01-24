@@ -9,7 +9,6 @@ COPY start-worker.sh /
 COPY spark-defaults.conf /usr/lib/spark/conf/
 COPY spark-env.sh /usr/lib/spark/conf/
 
-EXPOSE 8081
-EXPOSE 7070
+EXPOSE 8081 7070
 
 CMD ["/bin/bash", "/start-worker.sh"]
