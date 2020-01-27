@@ -6,10 +6,16 @@ Create Spark Mesos Worker image on Docker for LASID/UECE Cluster
 Git clone to start.
 
 ```
-git clone https://github.com/macc-uece/lasid-spark-worker-docker.git
+$ git clone https://github.com/macc-uece/lasid-spark-worker-docker.git
+$ cd lasid-spark-worker-docker/
 ```
 
 Build the Docker image
+
+```
+$ ./build-images.sh
+```
+Check the images created:
 
 ```
 $ docker images
