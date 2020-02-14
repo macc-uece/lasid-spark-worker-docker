@@ -1,14 +1,14 @@
 # Dockerfile for LASID Docker Spark Worker Docker Base Image
-# Version 0.3
+# Version 0.4
 FROM ubuntu:bionic
 
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
 LABEL image=LASID-Spark-Worker
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
-LABEL version="0.3"
+LABEL version="0.4"
 
 ENV DAEMON_RUN=true
-ENV SPARK_VERSION=2.4.4
+ENV SPARK_VERSION=2.4.5
 ENV HADOOP_VERSION=2.7
 ENV SCALA_VERSION=2.12.10
 ENV SCALA_HOME=/usr/share/scala
