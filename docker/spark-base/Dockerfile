@@ -29,16 +29,22 @@ RUN cd "/tmp" && \
     rm -f scala-${SCALA_VERSION}.deb
 
 #Python instalation
-RUN apt-get install -y python3
+RUN apt-get install -y python3 python3-pip
 RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
  
-#Spark instalation
+#Spark install
 RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
     tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
     mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /usr/lib/spark && \
     rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
+
+#Graphframes install
+RUN cd /usr/lib/spark/jar &&
+    wget --no-verbose http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/0.7.0-spark2.4-s_2.11/graphframes-0.7.0-spark2.4-s_2.11.jar &&\
+    pip install --upgrade pip && \
+    pip install graphframes
 
 # Fix the value of PYTHONHASHSEED
 # Note: this is needed when you use Python 3.3 or greater
