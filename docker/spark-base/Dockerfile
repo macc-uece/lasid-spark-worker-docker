@@ -43,8 +43,7 @@ RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-${SPARK_VERSI
 #Graphframes install
 RUN cd /usr/lib/spark/jars && \
     wget --no-verbose http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/0.7.0-spark2.4-s_2.11/graphframes-0.7.0-spark2.4-s_2.11.jar &&\
-    cd / && \
-    pip install --upgrade pip && \
+    pip3 install --upgrade pip && \
     pip install graphframes
 
 # Fix the value of PYTHONHASHSEED
