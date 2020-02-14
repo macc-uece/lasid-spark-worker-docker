@@ -29,8 +29,8 @@ RUN cd "/tmp" && \
     rm -f scala-${SCALA_VERSION}.deb
 
 #Python instalation
-RUN apt-get install -y python3 python3-pip
-RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 && \
+RUN apt-get install -y python3 python3-pip && \
+    update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
  
