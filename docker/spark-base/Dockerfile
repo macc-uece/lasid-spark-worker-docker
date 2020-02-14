@@ -41,8 +41,9 @@ RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-${SPARK_VERSI
     rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
 #Graphframes install
-RUN cd /usr/lib/spark/jar && \
+RUN cd /usr/lib/spark/jars && \
     wget --no-verbose http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/0.7.0-spark2.4-s_2.11/graphframes-0.7.0-spark2.4-s_2.11.jar &&\
+    cd / && \
     pip install --upgrade pip && \
     pip install graphframes
 
