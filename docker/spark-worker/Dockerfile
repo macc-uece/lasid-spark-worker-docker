@@ -15,4 +15,6 @@ ENV PATH $PATH:/usr/lib/spark/bin
 WORKDIR $SPARK_HOME
 EXPOSE 4040 6066 7077 8080 8081 7070
 
-CMD ["/bin/bash", "/start-worker.sh"]
+#CMD ["/bin/bash", "/start-worker.sh"]
+WORKDIR $SPARK_HOME
+CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
