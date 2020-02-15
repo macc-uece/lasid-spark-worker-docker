@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export SPARK_HOME=/usr/lib/spark
+export PATH=$PATH:$SPARK_HOME/bin
 
 cd $SPARK_HOME
 
