@@ -1,7 +1,7 @@
 # LASID Spark Worker Docker Image
 Create Spark Mesos Worker image on Docker for LASID/UECE Cluster
 
-# Intruction
+# Introduction
 
 Git clone to start.
 
