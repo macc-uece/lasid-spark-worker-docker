@@ -9,6 +9,10 @@ COPY start-worker.sh /
 COPY spark-defaults.conf /usr/lib/spark/conf/
 COPY spark-env.sh /usr/lib/spark/conf/
 
-EXPOSE 8081 7070
+RUN chmod +x /start-worker.sh
+ENV PATH $PATH:/usr/lib/spark/bin
+
+WORKDIR $SPARK_HOME
+EXPOSE 4040 6066 7077 8080 8081 7070
 
 CMD ["/bin/bash", "/start-worker.sh"]
