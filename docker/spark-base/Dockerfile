@@ -34,7 +34,7 @@ RUN cd "/tmp" && \
     rm -f scala-${SCALA_VERSION}.deb
 
 #Python instalation
-RUN apt-get install -y python3 python3-pip && \
+RUN apt-get install -y python3 python3-pip python3-setuptools && \
     update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -48,5 +48,6 @@ RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-${SPARK_VERSI
 #Graphframes install
 RUN cd /usr/lib/spark/jars && \
     wget --no-verbose http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/0.7.0-spark2.4-s_2.11/graphframes-0.7.0-spark2.4-s_2.11.jar &&\
+    chown -R root:root $SPARK_HOME && \
     pip3 install --upgrade pip && \
     pip install graphframes
