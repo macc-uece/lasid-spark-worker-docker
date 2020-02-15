@@ -2,7 +2,7 @@
 FROM lasid/spark-base
 
 ENV SPARK_WORKER_WEBUI_PORT 8081
-ENV SPARK_WORKER_LOG /var/spark/logs
+ENV SPARK_WORKER_LOG /var/log
 #ENV SPARK_MASTER "spark://spark-master:7077"
 
 COPY start-worker.sh /
