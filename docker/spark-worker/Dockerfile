@@ -5,6 +5,7 @@ ENV SPARK_HOME /usr/lib/spark
 ENV SPARK_WORKER_WEBUI_PORT 8081
 ENV SPARK_WORKER_LOG /var/log/spark
 ENV PATH $PATH:${SPARK_HOME}/bin
+ENV PYSPARK_PYTHON python3
 #ENV SPARK_MASTER "spark://spark-master:7077"
 
 COPY start-worker.sh /
