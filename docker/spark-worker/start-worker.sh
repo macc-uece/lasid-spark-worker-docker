@@ -4,7 +4,7 @@ SPARKMASTER=${SPARKMASTER:-"mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.
 MESOSEXECUTORCORE=${MESOSEXECUTORCORE:-0.1}
 SPARKIMAGE=${SPARKIMAGE:-"lasid/spark-worker:latest"}
 CURRENTIP=$(hostname -i)
-SPARK_WORKER_LOG=${SPARK_WORKER_LOG:-"/usr/log/spark"}
+SPARK_WORKER_LOG=${SPARK_WORKER_LOG:-"/var/log/spark"}
 
 sed -i 's;SPARKMASTER;'$SPARKMASTER';g' /usr/lib/spark/conf/spark-defaults.conf
 sed -i 's;MESOSEXECUTORCORE;'$MESOSEXECUTORCORE';g' /usr/lib/spark/conf/spark-defaults.conf
@@ -23,7 +23,7 @@ cd $SPARK_HOME
 
 mkdir -p $SPARK_WORKER_LOG
 
-ln -sf /dev/stdout $SPARK_WORKER_LOG/spark-worker.out
+ln -sf /dev/stdout $SPARK_WORKER_LOG/spark-worker-$CURRENTIP.out
 
 #/usr/lib/spark/sbin/../bin/spark-class org.apache.spark.deploy.worker.Worker --webui-port $SPARK_WORKER_WEBUI_PORT $SPARK_MASTER >> $SPARK_WORKER_LOG/spark-worker.out
 ###!/bin/bash
