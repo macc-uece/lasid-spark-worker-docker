@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+. "./sbin/spark-config.sh"
+. "./bin/load-spark-env.sh"
+
 export SPARKMASTER=${SPARKMASTER:-"mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"}
 export MESOSEXECUTORCORE=${MESOSEXECUTORCORE:-0.1}
 export SPARKIMAGE=${SPARKIMAGE:-"lasid/spark-worker:latest"}
@@ -11,9 +14,6 @@ export SPARK_HOME=${SPARK_HOME:-"/usr/lib/spark"}
 export PATH=$PATH:$SPARK_HOME/bin
 
 cd $SPARK_HOME
-
-. "./sbin/spark-config.sh"
-. "./bin/load-spark-env.sh"
 
 mkdir -p $SPARK_WORKER_LOG
 
