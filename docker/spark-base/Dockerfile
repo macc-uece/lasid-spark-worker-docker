@@ -24,7 +24,7 @@ RUN apt-get update && \
     apt-get install -y wget software-properties-common 
 
 # Install Java 
-RUN apt-get -y install openjdk-8-jre-headless gnupg2 --fix-missing
+RUN apt-get -y install libnss3 openjdk-8-jre-headless gnupg2 --fix-missing
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 #Scala instalation
