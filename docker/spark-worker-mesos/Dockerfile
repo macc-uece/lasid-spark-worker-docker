@@ -13,10 +13,10 @@ ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:
 # It is needed for libmesos.so
 RUN apt-get -y update && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E56151BF && \
-    echo "deb http://repos.mesosphere.com/ubuntu xenial main" | \
-    tee /etc/apt/sources.list.d/mesosphere.list && \
+    echo "deb http://repos.mesosphere.com/ubuntu xenial main" | tee /etc/apt/sources.list.d/mesosphere.list && \
+    add-apt-repository -y ppa:xapienz/curl34  && \
     apt-get -y update && \
-    apt-get -y install mesos && \
+    apt-get -y install libcurl4 libcurl4-openssl-dev libssl1.0.0 mesos && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY start-worker.sh /
