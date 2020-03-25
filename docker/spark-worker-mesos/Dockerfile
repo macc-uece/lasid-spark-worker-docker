@@ -8,7 +8,6 @@ ENV PATH $PATH:${SPARK_HOME}/bin
 ENV PYSPARK_PYTHON python3
 ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"
 
-
 # Adds Mesosphere official repository, and install Mesos
 # It is needed for libmesos.so
 RUN apt-get -y update && \
@@ -24,6 +23,9 @@ COPY spark-defaults.conf /usr/lib/spark/conf/
 COPY spark-env.sh /usr/lib/spark/conf/
 RUN chmod +x /usr/lib/spark/conf/spark-env.sh
 RUN chmod +x /start-worker.sh
+
+ENV MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so
+ENV PYSPARK_PYTHON python3
 
 EXPOSE 8081
 
