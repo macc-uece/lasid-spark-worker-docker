@@ -18,10 +18,10 @@ export PATH=$PATH:$SPARK_HOME/bin
 
 cd $SPARK_HOME
 
-#exec "$@"
-
 mkdir -p $SPARK_WORKER_LOG
 
 ln -sf /dev/stdout $SPARK_WORKER_LOG/spark-worker-$CURRENTIP.out
 
-/usr/lib/spark/bin/spark-class org.apache.spark.deploy.worker.Worker --webui-port $SPARK_WORKER_WEBUI_PORT $SPARK_MASTER >> $SPARK_WORKER_LOG/spark-worker.out
+#/usr/lib/spark/bin/spark-class org.apache.spark.deploy.worker.Worker --webui-port $SPARK_WORKER_WEBUI_PORT $SPARK_MASTER >> $SPARK_WORKER_LOG/spark-worker.out
+
+exec "$@"
