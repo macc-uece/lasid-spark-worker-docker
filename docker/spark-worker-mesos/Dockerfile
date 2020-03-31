@@ -29,7 +29,7 @@ ENV PYSPARK_PYTHON python3
 
 EXPOSE 8081
 
-WORKDIR $SPARK_HOME
+#WORKDIR $SPARK_HOME
 
 #CMD ["/bin/bash", "/start-worker.sh"]
 ENTRYPOINT ["/start-worker.sh"]
