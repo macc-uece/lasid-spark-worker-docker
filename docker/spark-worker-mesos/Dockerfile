@@ -31,4 +31,5 @@ EXPOSE 8081
 
 WORKDIR $SPARK_HOME
 
-CMD ["/bin/bash", "/start-worker.sh"]
+#CMD ["/bin/bash", "/start-worker.sh"]
+ENTRYPOINT ["/start-worker.sh"]
