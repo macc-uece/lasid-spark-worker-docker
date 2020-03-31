@@ -2,8 +2,8 @@
 
 ####!/usr/bin/env bash
 
-. "./sbin/spark-config.sh"
-. "./bin/load-spark-env.sh"
+#. "./sbin/spark-config.sh"
+#. "./bin/load-spark-env.sh"
 
 ##export SPARKMASTER=${SPARK_MASTER:-"mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"}
 ##export MESOS_EXECUTOR_CORE=${MESOS_EXECUTOR_CORE:-0.1}
