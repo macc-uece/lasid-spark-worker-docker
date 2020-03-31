@@ -34,7 +34,7 @@ SPARK_IMAGE=${SPARK_IMAGE:-lasid/spark-worker-mesos:latest}
 CURRENT_IP=$(hostname -i)
 
 echo "current ip: $CURRENT_IP"
-export LIBPROCESS_IP=$CURRENT_IP
+#export LIBPROCESS_IP=$CURRENT_IP
 
 sed -i 's;SPARK_MASTER;'$SPARK_MASTER';g' /usr/lib/spark/conf/spark-defaults.conf
 sed -i 's;MESOS_EXECUTOR_CORE;'$MESOS_EXECUTOR_CORE';g' /usr/lib/spark/conf/spark-defaults.conf
