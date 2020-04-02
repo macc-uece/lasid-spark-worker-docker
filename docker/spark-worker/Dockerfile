@@ -8,16 +8,20 @@ ENV PATH $PATH:${SPARK_HOME}/bin
 ENV PYSPARK_PYTHON python3
 ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"
 
-COPY start-worker.sh /
+#COPY start-worker.sh /
 COPY spark-defaults.conf /usr/lib/spark/conf/
 COPY spark-env.sh /usr/lib/spark/conf/
 RUN chmod +x /usr/lib/spark/conf/spark-env.sh
-RUN chmod +x /start-worker.sh
+#RUN chmod +x /start-worker.sh
+
+USER root
 
 #EXPOSE 7000-8000 4040 6066 7077  8081 7070
 #EXPOSE 4040 6066 7077 7001 7002 7003 7004 7005 7006 8080 8081 8888
-EXPOSE 8081
+#EXPOSE 8081
+EXPOSE 4040 8080 8081
 
 WORKDIR $SPARK_HOME
 
-CMD ["/bin/bash", "/start-worker.sh"]
+#CMD ["/bin/bash", "/start-worker.sh"]
+CMD ["/bin/bash"]
