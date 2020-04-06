@@ -15,6 +15,7 @@ export SPARK_WORKER_LOG=${SPARK_WORKER_LOG:-"/var/log/spark"}
 export SPARK_WORKER_WEBUI_PORT=${SPARK_WORKER_WEBUI_PORT:-"8081"}
 #export SPARKLOCALIP=${SPARKLOCALIP:-${CURRENTIP:-"127.0.0.1"}}
 #export SPARKPUBLICDNS=${SPARKPUBLICDNS:-${CURRENTIP:-"127.0.0.1"}}
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export SPARK_HOME=${SPARK_HOME:-"/usr/lib/spark"}
 export PATH=$PATH:$SPARK_HOME/bin
 
