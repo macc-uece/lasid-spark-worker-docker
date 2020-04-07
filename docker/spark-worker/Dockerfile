@@ -23,6 +23,6 @@ EXPOSE 4040 8080 8081
 
 WORKDIR $SPARK_HOME
 
-#CMD ["/bin/bash", "/start-worker.sh"]
 #CMD ["/bin/bash"]
-CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
+#CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
+CMD ["/bin/bash", "/start-worker.sh"]
