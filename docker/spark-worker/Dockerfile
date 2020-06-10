@@ -14,14 +14,16 @@ COPY spark-env.sh /usr/lib/spark/conf/
 RUN chmod +x /usr/lib/spark/conf/spark-env.sh
 #RUN chmod +x /start-worker.sh
 
-USER root
+#USER root
 
 #EXPOSE 7000-8000 4040 6066 7077  8081 7070
 #EXPOSE 4040 6066 7077 7001 7002 7003 7004 7005 7006 8080 8081 8888
 #EXPOSE 8081
-EXPOSE 4040 8080 8081
+EXPOSE 4040 8080 8081 8082 8083 8084 8085 8086 8087 8088 8089
 
-WORKDIR $SPARK_HOME
+#WORKDIR $SPARK_HOME
+
+WORKDIR /tmp
 
 #CMD ["/bin/bash"]
 #CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
