@@ -7,8 +7,8 @@ ENV SPARK_WORKER_LOG /var/log/spark
 ENV PATH $PATH:${SPARK_HOME}/bin
 ENV PYSPARK_PYTHON python3
 ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"
-ENV CORES=3
-ENV MEMORY=6G
+ENV CORES=2
+ENV MEMORY=4G
 
 #COPY start-worker.sh /
 COPY spark-defaults.conf /usr/lib/spark/conf/
@@ -25,7 +25,7 @@ EXPOSE 8080 8081 8082 8083 8084 8085
 
 #WORKDIR $SPARK_HOME
 
-WORKDIR /
+#WORKDIR /
 
 #CMD ["/bin/bash"]
 #CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
