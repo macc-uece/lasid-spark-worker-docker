@@ -25,8 +25,9 @@ RUN apt-get update && \
     apt-get install -y wget software-properties-common 
 
 # Install Java 
-RUN apt-get -y install libnss3 openjdk-8-jre-headless gnupg2 --fix-missing && \
-    update-alternatives --install "/usr/bin/java" "java" "$(which java)" 1 && \
+RUN apt-get -y install libnss3 openjdk-8-jre-headless gnupg2 --fix-missing 
+#&& \
+#    update-alternatives --install "/usr/bin/java" "java" "$(which java)" 1 && \
 #    update-java-alternatives -s java-1.8.0-openjdk-amd64
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
