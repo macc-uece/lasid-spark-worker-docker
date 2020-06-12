@@ -16,6 +16,10 @@ COPY spark-env.sh /usr/lib/spark/conf/
 RUN chmod +x /usr/lib/spark/conf/spark-env.sh
 #RUN chmod +x /start-worker.sh
 
+# Install libraries
+#COPY ./resources/requirements.txt .
+RUN pip install -r requirements.txt
+
 #USER root
 
 #EXPOSE 7000-8000 4040 6066 7077  8081 7070
