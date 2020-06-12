@@ -26,7 +26,8 @@ RUN apt-get update && \
 
 # Install Java 
 RUN apt-get -y install libnss3 openjdk-8-jre-headless gnupg2 --fix-missing && \
-    update-java-alternatives -s java-1.8.0-openjdk-amd64
+    update-alternatives --install "/usr/bin/java" "java" "$(which java)" 1 && \
+#    update-java-alternatives -s java-1.8.0-openjdk-amd64
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 #Scala instalation
@@ -38,7 +39,7 @@ RUN cd "/tmp" && \
 #Python 3 instalation
 RUN apt-get install -y python3 python3-pip python3-setuptools && \
     update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 && \
-    pip install --upgrade pip
+    pip3 install --upgrade pip
  
 #Spark install
 RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
