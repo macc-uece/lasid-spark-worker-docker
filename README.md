@@ -10,7 +10,7 @@ $ git clone https://github.com/macc-uece/lasid-spark-worker-docker.git
 $ cd lasid-spark-worker-docker/
 ```
 
-Build the Docker image
+Build the Docker image and push to DockerHub
 
 ```
 $ ./build-images.sh
@@ -24,17 +24,4 @@ lasid/spark-worker   latest              7a90258317e2        19 hours ago       
 lasid/spark-base     latest              00550f6beb50        19 hours ago        614MB
 ubuntu               bionic              ccc6e87d482b        8 days ago          64.2MB
 ```
-Get the IMAGE ID of the desired image and Tag it. In this case we tag the version number *v1* and the tag *latest* to set the default image.
 
-```
-$ docker tag 7a90258317e2 lasid/spark-worker:v1
-$ docker tag 7a90258317e2 lasid/spark-worker:latest
-```
-
-Then push it to Docker Hub:
-
-```
-$ docker login
-$ docker push lasid/spark-worker:v1
-$ docker push lasid/spark-worker:latest
-```
