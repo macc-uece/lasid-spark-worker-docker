@@ -25,7 +25,8 @@ RUN apt-get update && \
     apt-get install -y wget software-properties-common 
 
 # Install Java 
-RUN apt-get -y install libnss3 openjdk-8-jre-headless gnupg2 --fix-missing
+RUN apt-get -y install libnss3 openjdk-8-jre-headless gnupg2 --fix-missing && \
+    update-java-alternatives -s java-1.8.0-openjdk-amd64
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 #Scala instalation
@@ -34,11 +35,10 @@ RUN cd "/tmp" && \
     dpkg -i scala-${SCALA_VERSION}.deb && \
     rm -f scala-${SCALA_VERSION}.deb
 
-#Python instalation
+#Python 3 instalation
 RUN apt-get install -y python3 python3-pip python3-setuptools && \
     update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    pip install --upgrade pip
  
 #Spark install
 RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
@@ -50,5 +50,7 @@ RUN wget --no-verbose http://ftp.unicamp.br/pub/apache/spark/spark-${SPARK_VERSI
 RUN cd /usr/lib/spark/jars && \
     wget --no-verbose http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/0.7.0-spark2.4-s_2.11/graphframes-0.7.0-spark2.4-s_2.11.jar &&\
     chown -R root:root $SPARK_HOME && \
-    pip3 install --upgrade pip && \
     pip install graphframes
+
+# Clean instalation files 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
