@@ -1,6 +1,11 @@
 # Build Spark Docker Worker
 FROM lasid/spark-base
 
+MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
+LABEL image=LASID-Spark-Worker
+LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
+LABEL version="0.4"
+
 ENV SPARK_HOME /usr/lib/spark
 #ENV SPARK_WORKER_WEBUI_PORT 8081
 ENV SPARK_WORKER_LOG /var/log/spark
