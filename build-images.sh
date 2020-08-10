@@ -13,7 +13,7 @@ docker build -t lasid/spark-worker-tensorflow -t lasid/spark-worker-tensorflow:$
 
 ## Push image to DockerHub
 docker login
-docker push lasid/spark-worker:latest
+#docker push lasid/spark-worker:latest
 docker push lasid/spark-worker:$SPARK_VER$UBUNTU_VER
 docker push lasid/spark-worker-tensorflow:latest
 docker push lasid/spark-worker-tensorflow:$SPARK_VER$UBUNTU_VER
