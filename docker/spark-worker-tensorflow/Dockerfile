@@ -23,7 +23,7 @@ RUN chmod +x /usr/lib/spark/conf/spark-env.sh
 
 # Install libraries
 #COPY ./resources/requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install -r ./docker/spark-worker-tensorflow/requirements.txt
 
 #USER root
 
