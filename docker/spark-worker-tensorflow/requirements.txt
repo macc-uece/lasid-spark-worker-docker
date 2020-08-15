@@ -1,3 +1,4 @@
 setuptools>=41.0.0
+numpy
 tensorflow
 tensorflowonspark
