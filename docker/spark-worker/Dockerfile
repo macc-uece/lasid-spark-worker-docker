@@ -19,7 +19,7 @@ RUN chmod +x /usr/lib/spark/conf/spark-env.sh
 
 EXPOSE 8080 8081 8082 8083 8084
 
-#WORKDIR $SPARK_HOME
+WORKDIR $SPARK_HOME
 
 #WORKDIR /
 
