@@ -24,7 +24,7 @@ RUN chmod +x /usr/lib/spark/conf/spark-env.sh
 
 # Install libraries
 COPY ./requirements.txt .
-RUN pip install -r requirements.txt 
+RUN pip install --use-feature=2020-resolver -r requirements.txt 
 
 #USER root
 
