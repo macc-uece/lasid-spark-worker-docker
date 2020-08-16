@@ -3,7 +3,7 @@
 FROM ubuntu:bionic
 
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
-LABEL image=LASID-Spark-Worker
+LABEL image=LASID-Spark-Worker-Base
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
 LABEL version="0.4"
 
