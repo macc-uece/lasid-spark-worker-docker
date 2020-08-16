@@ -2,6 +2,7 @@
 FROM lasid/spark-base
 
 ENV SPARK_HOME /usr/lib/spark
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 #ENV SPARK_WORKER_WEBUI_PORT 8081
 ENV SPARK_WORKER_LOG /var/log/spark
 ENV PATH $PATH:${SPARK_HOME}/bin
