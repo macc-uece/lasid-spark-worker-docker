@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SPARK_VER="2.4.5"
+SPARK_VER="2.4.6"
 UBUNTU_VER="_bionic"
 
 set -e
