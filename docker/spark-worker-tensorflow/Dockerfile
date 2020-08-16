@@ -18,6 +18,7 @@ ENV MEMORY=4G
 
 #COPY start-worker.sh /
 COPY spark-defaults.conf /usr/lib/spark/conf/
+COPY log4j.properties /usr/lib/spark/conf/
 COPY spark-env.sh /usr/lib/spark/conf/
 RUN chmod +x /usr/lib/spark/conf/spark-env.sh
 
