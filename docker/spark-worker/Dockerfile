@@ -28,4 +28,5 @@ EXPOSE 8080 8081 8082 8083 8084
 #CMD ["/bin/bash", "/start-worker.sh"]
 #-c $CORES -m $MEMORY 
 
-ENTRYPOINT /usr/lib/spark/bin/spark-class org.apache.spark.deploy.worker.Worker $SPARK_MASTER
+#ENTRYPOINT /usr/lib/spark/bin/spark-class org.apache.spark.deploy.worker.Worker $SPARK_MASTER
+ENTRYPOINT ["/usr/lib/spark/bin/spark-class","org.apache.spark.deploy.worker.Worker"]
