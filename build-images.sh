@@ -9,11 +9,11 @@ set -e
 docker build -t lasid/spark-base -t lasid/spark-base:$SPARK_VER$UBUNTU_VER ./docker/spark-base
 docker build -t lasid/spark-worker -t lasid/spark-worker:$SPARK_VER$UBUNTU_VER ./docker/spark-worker
 docker build -t lasid/spark-worker-tensorflow -t lasid/spark-worker-tensorflow:$SPARK_VER$UBUNTU_VER ./docker/spark-worker-tensorflow
-docker build -t lasid/tensorflow-worker-tos -t lasid/tensorflow-worker-tos::$SPARK_VER$UBUNTU_VER ./docker/tensorflow-worker-tos
+docker build -t lasid/tensorflow-worker-tos -t lasid/tensorflow-worker-tos:$SPARK_VER$UBUNTU_VER ./docker/tensorflow-worker-tos
 
 ## Push image to DockerHub
 docker login
-docker push lasid/spark-worker:latest
+#docker push lasid/spark-worker:latest
 docker push lasid/spark-worker:$SPARK_VER$UBUNTU_VER
 docker push lasid/spark-worker-tensorflow:latest
 docker push lasid/spark-worker-tensorflow:$SPARK_VER$UBUNTU_VER
