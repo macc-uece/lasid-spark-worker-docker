@@ -16,14 +16,40 @@ ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:
 #ENV CORES=2
 #ENV MEMORY=4G
 
+# Install some Tensorflow dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    libfreetype6-dev \
+    libpng-dev \
+    libzmq3-dev \
+    pkg-config \
+    python \
+    python3 \
+    python3-dev \
+    python-pip \
+    python3-pip \
+    python3-setuptools \
+    rsync \
+    software-properties-common \
+    unzip \
+    pkg-config libpcre3-dev zlib1g-dev liblzma-dev \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install libraries
+COPY ./requirements.txt .
+#RUN pip install --use-feature=2020-resolver -r requirements.txt 
+
+RUN pip3 --no-cache-dir install --upgrade setuptools && \
+    pip3 --no-cache-dir install --ignore-installed --use-feature=2020-resolver -r requirements.txt
+
 COPY spark-defaults.conf /usr/lib/spark/conf/
 COPY log4j.properties /usr/lib/spark/conf/
 COPY spark-env.sh /usr/lib/spark/conf/
 RUN chmod +x /usr/lib/spark/conf/spark-env.sh
-
-# Install libraries
-COPY ./requirements.txt .
-RUN pip install --use-feature=2020-resolver -r requirements.txt 
 
 #USER root
 #USER stack
