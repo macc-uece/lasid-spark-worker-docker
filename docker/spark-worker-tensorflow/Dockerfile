@@ -28,7 +28,7 @@ RUN pip install --use-feature=2020-resolver -r requirements.txt
 #USER root
 #USER stack
 
-EXPOSE 8080 8081 8082 8083 8084
+EXPOSE 8080 8081 8082 8083 8084 6006
 
 WORKDIR $SPARK_HOME
 
