@@ -5,12 +5,12 @@ FROM ubuntu:bionic
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
 LABEL image=LASID-Spark-Worker-Base
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
-LABEL version="0.4"
 
 ENV DAEMON_RUN=true
-ENV SPARK_VERSION=2.4.5
+ENV SPARK_VERSION=2.4.7
 ENV HADOOP_VERSION=2.7
-ENV SCALA_VERSION=2.12.11    
+ENV SCALA_VERSION=2.12.12
+ENV JAVA_VERSION=8
 ENV SCALA_HOME=/usr/share/scala
 ENV SPARK_HOME=/usr/lib/spark
 
@@ -25,11 +25,13 @@ RUN apt-get update && \
     apt-get install -y wget software-properties-common 
 
 # Install Java 
-RUN apt-get -y install libnss3 openjdk-8-jre-headless gnupg2 --fix-missing 
+RUN apt-get -y install libnss3 openjdk-${JAVA_VERSION}-jre-headless gnupg2 --fix-missing 
 #&& \
 #    update-alternatives --install "/usr/bin/java" "java" "$(which java)" 1 && \
 #    update-java-alternatives -s java-1.8.0-openjdk-amd64
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+ENV JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64/
+
+${JAVA_VERSION}
 
 #Scala instalation
 RUN cd "/tmp" && \
