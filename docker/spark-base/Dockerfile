@@ -1,5 +1,4 @@
 # Dockerfile for LASID Docker Spark Worker Docker Base Image
-# Version 0.4
 FROM ubuntu:bionic
 
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
@@ -13,6 +12,8 @@ ENV SCALA_VERSION=2.12.12
 ENV JAVA_VERSION=8
 ENV SCALA_HOME=/usr/share/scala
 ENV SPARK_HOME=/usr/lib/spark
+ENV SPARK_GRAPH_PKG="0.8.1-spark3.0-s_2.12/graphframes-0.8.1-spark3.0-s_2.12.jar"
+ENV SPARK_DELTA_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar"
 
 #scala old version 2.11.12
 # Fix the value of PYTHONHASHSEED
@@ -52,7 +53,8 @@ RUN wget --no-verbose https://archive.apache.org/dist/spark/spark-${SPARK_VERSIO
 
 #Graphframes install
 RUN cd /usr/lib/spark/jars && \
-    wget --no-verbose http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/0.7.0-spark2.4-s_2.11/graphframes-0.7.0-spark2.4-s_2.11.jar &&\
+	wget -nv http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/${SPARK_GRAPH_PKG}
+	wget -nv https://repo1.maven.org/maven2/io/delta/${SPARK_DELTA_PKG}
     chown -R root:root $SPARK_HOME && \
     pip install graphframes
 
