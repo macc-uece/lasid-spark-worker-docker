@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SPARK_VER="2.4.6"
+SPARK_VER="2.4.7"
 UBUNTU_VER="_bionic"
 
 set -e
@@ -14,5 +14,5 @@ docker build -t lasid/spark-worker-tensorflow -t lasid/spark-worker-tensorflow:$
 docker login
 #docker push lasid/spark-worker:latest
 docker push lasid/spark-worker:$SPARK_VER$UBUNTU_VER
-docker push lasid/spark-worker-tensorflow:latest
+#docker push lasid/spark-worker-tensorflow:latest
 docker push lasid/spark-worker-tensorflow:$SPARK_VER$UBUNTU_VER
