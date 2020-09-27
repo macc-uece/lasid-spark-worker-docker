@@ -2,12 +2,11 @@
 FROM lasid/spark-base
 
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
-LABEL image=LASID-Spark-Worker
+LABEL image=LASID-Spark-Worker-Tensorflow
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
-LABEL version="0.4"
 
 ENV SPARK_HOME /usr/lib/spark
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 #ENV SPARK_WORKER_WEBUI_PORT 8081
 ENV SPARK_WORKER_LOG /data/software/mgmt/log/spark-log/
 ENV PATH $PATH:${SPARK_HOME}/bin
