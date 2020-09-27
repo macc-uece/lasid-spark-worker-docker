@@ -6,8 +6,9 @@ LABEL image=LASID-Spark-Worker-Base
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
 
 ENV DAEMON_RUN=true
-ENV SPARK_VERSION=2.4.7
+ENV SPARK_VERSION=3.0.1
 ENV HADOOP_VERSION=2.7
+#ENV SCALA_VERSION=2.11.12    # Scala 11 last version
 ENV SCALA_VERSION=2.12.12
 ENV JAVA_VERSION=8
 ENV SCALA_HOME=/usr/share/scala
