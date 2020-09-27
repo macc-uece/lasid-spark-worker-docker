@@ -51,8 +51,8 @@ RUN wget --no-verbose https://archive.apache.org/dist/spark/spark-${SPARK_VERSIO
 
 #Graphframes install
 RUN cd /usr/lib/spark/jars && \
-	wget -nv http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/${SPARK_GRAPH_PKG}
-	wget -nv https://repo1.maven.org/maven2/io/delta/${SPARK_DELTA_PKG}
+    wget -nv http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/${SPARK_GRAPH_PKG} && \
+    wget -nv https://repo1.maven.org/maven2/io/delta/${SPARK_DELTA_PKG} && \
     chown -R root:root $SPARK_HOME && \
     pip install graphframes
 
