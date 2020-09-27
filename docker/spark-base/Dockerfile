@@ -24,7 +24,7 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    apt-get install -y wget software-properties-common 
+    apt-get install -y wget software-properties-common build-essential
 
 # Install Java 
 RUN apt-get -y install libnss3 openjdk-${JAVA_VERSION}-jre-headless gnupg2 --fix-missing 
