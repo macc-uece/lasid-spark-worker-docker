@@ -32,8 +32,6 @@ RUN apt-get -y install libnss3 openjdk-${JAVA_VERSION}-jre-headless gnupg2 --fix
 #    update-java-alternatives -s java-1.8.0-openjdk-amd64
 ENV JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64/
 
-${JAVA_VERSION}
-
 #Scala instalation
 RUN cd "/tmp" && \
     wget --no-verbose https://downloads.lightbend.com/scala/${SCALA_VERSION}/scala-${SCALA_VERSION}.deb &&  \
