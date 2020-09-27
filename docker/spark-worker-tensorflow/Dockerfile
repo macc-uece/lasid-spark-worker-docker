@@ -18,9 +18,10 @@ ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     curl libfreetype6-dev libpng-dev libzmq3-dev pkg-config \
-    rsync unzip pkg-config libpcre3-dev zlib1g-dev liblzma-dev && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rsync unzip pkg-config libpcre3-dev zlib1g-dev liblzma-dev 
+
+# Clean instalation files 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install libraries
 COPY ./requirements.txt .
