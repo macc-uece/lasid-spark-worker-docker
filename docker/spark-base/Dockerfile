@@ -5,8 +5,10 @@ MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
 LABEL image=LASID-Spark-Worker-Base
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
 
+ARG SP_VERSION
+
 ENV DAEMON_RUN=true
-ENV SPARK_VERSION=3.0.1
+ENV SPARK_VERSION=$SP_VERSION
 ENV HADOOP_VERSION=2.7
 #ENV SCALA_VERSION=2.11.12    # Scala 11 last version
 ENV SCALA_VERSION=2.12.12
