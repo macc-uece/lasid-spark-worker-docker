@@ -7,18 +7,24 @@ LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
 
 ARG SP_VERSION
 
+ENV HADOOP_VERSION=2.7
 ENV DAEMON_RUN=true
 ENV SPARK_VERSION=$SP_VERSION
-ENV HADOOP_VERSION=2.7
-#ENV SCALA_VERSION=2.11.12    # Scala 11 last version
-ENV SCALA_VERSION=2.12.12
-ENV JAVA_VERSION=11
+
+RUN if [ "x${SP_VERSION:0:1}" == "3" ] ; then
+        ENV JAVA_VERSION=11 ;
+        ENV SCALA_VERSION=2.12.12 ;
+        ENV SPARK_GRAPH_PKG="0.8.1-spark3.0-s_2.12/graphframes-0.8.1-spark3.0-s_2.12.jar" ;
+        ENV SPARK_DELTA_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar" ;
+    else
+        ENV JAVA_VERSION=8 ;
+        ENV SCALA_VERSION=2.11.12 ;
+        ENV SPARK_GRAPH_PKG="0.8.1-spark2.4-s_2.11/graphframes-0.8.1-spark2.4-s_2.11.jar"
+        ENV SPARK_DELTA_PKG="delta-core_2.11/0.6.1/delta-core_2.11-0.6.1.jar"
+    fi
 ENV SCALA_HOME=/usr/share/scala
 ENV SPARK_HOME=/usr/lib/spark
-ENV SPARK_GRAPH_PKG="0.8.1-spark3.0-s_2.12/graphframes-0.8.1-spark3.0-s_2.12.jar"
-ENV SPARK_DELTA_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar"
 
-#scala old version 2.11.12
 # Fix the value of PYTHONHASHSEED
 ENV PYTHONHASHSEED 1
 ENV PYTHONIOENCODING UTF-8
