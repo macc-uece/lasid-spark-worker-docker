@@ -15,9 +15,9 @@ UBUNTU_VER="bionic"
 set -e
 
 ## Build Docker image
-docker build --build-arg SPARK_VER -t lasid/spark-base -t lasid/spark-base:${SPARK_VER}_${UBUNTU_VER} ./docker/spark-base
-docker build --build-arg SPARK_VER -t lasid/spark-worker -t lasid/spark-worker:${SPARK_VER}_${UBUNTU_VER} ./docker/spark-worker
-docker build --build-arg SPARK_VER -t lasid/spark-worker-tensorflow -t lasid/spark-worker-tensorflow:${SPARK_VER}_${UBUNTU_VER} ./docker/spark-worker-tensorflow
+docker build --build-arg SP_VERSION=${SPARK_VER} -t lasid/spark-base -t lasid/spark-base:${SPARK_VER}_${UBUNTU_VER} ./docker/spark-base
+docker build --build-arg SP_VERSION=${SPARK_VER} -t lasid/spark-worker -t lasid/spark-worker:${SPARK_VER}_${UBUNTU_VER} ./docker/spark-worker
+docker build --build-arg SP_VERSION=${SPARK_VER} -t lasid/spark-worker-tensorflow -t lasid/spark-worker-tensorflow:${SPARK_VER}_${UBUNTU_VER} ./docker/spark-worker-tensorflow
 
 ## Push image to DockerHub
 docker login
