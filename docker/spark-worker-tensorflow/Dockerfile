@@ -1,12 +1,11 @@
 # Build Spark Docker Worker
-FROM lasid/spark-base
+FROM lasid/spark-worker
 
 MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
 LABEL image=LASID-Spark-Worker-Tensorflow
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
 
 ENV SPARK_HOME /usr/lib/spark
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 #ENV SPARK_WORKER_WEBUI_PORT 8081
 ENV SPARK_WORKER_LOG /data/software/mgmt/log/spark-log/
 ENV PATH $PATH:${SPARK_HOME}/bin
@@ -19,19 +18,14 @@ RUN apt-get update && \
     curl libfreetype6-dev libpng-dev libzmq3-dev pkg-config \
     rsync unzip pkg-config libpcre3-dev zlib1g-dev liblzma-dev 
 
-# Clean instalation files 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # Install libraries
 COPY ./requirements.txt .
 
 RUN pip3 --no-cache-dir install --upgrade setuptools && \
     pip3 --no-cache-dir install --ignore-installed --use-feature=2020-resolver -r requirements.txt
 
-COPY spark-defaults.conf /usr/lib/spark/conf/
-COPY log4j.properties /usr/lib/spark/conf/
-COPY spark-env.sh /usr/lib/spark/conf/
-RUN chmod +x /usr/lib/spark/conf/spark-env.sh
+# Clean instalation files 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 8080 8081
 
