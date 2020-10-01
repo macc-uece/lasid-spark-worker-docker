@@ -1,27 +1,56 @@
 # Dockerfile for LASID Docker Spark Worker Docker Base Image
 FROM ubuntu:bionic
 
-MAINTAINER Marcial Fernandez "marcial@larces.uece.br"
+#LABEL maintainer="Marcial Fernandez "marcial@larces.uece.br"
 LABEL image=LASID-Spark-Worker-Base
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
 
-ARG SP_VERSION
+ARG SP_VERSION="3.0.1"
+ARG JV_VERSION="11"
 
 ENV HADOOP_VERSION=2.7
 ENV DAEMON_RUN=true
 ENV SPARK_VERSION=$SP_VERSION
+ENV JAVA_VERSION=$JV_VERSION
 
-RUN if [ "x${SP_VERSION:0:1}" == "3" ] ; then
-        ENV JAVA_VERSION=11 ;
-        ENV SCALA_VERSION=2.12.12 ;
-        ENV SPARK_GRAPH_PKG="0.8.1-spark3.0-s_2.12/graphframes-0.8.1-spark3.0-s_2.12.jar" ;
-        ENV SPARK_DELTA_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar" ;
-    else
-        ENV JAVA_VERSION=8 ;
-        ENV SCALA_VERSION=2.11.12 ;
-        ENV SPARK_GRAPH_PKG="0.8.1-spark2.4-s_2.11/graphframes-0.8.1-spark2.4-s_2.11.jar"
-        ENV SPARK_DELTA_PKG="delta-core_2.11/0.6.1/delta-core_2.11-0.6.1.jar"
-    fi
+# RUN if [ "$argname" = "false" ] ; then echo 'false'; else echo 'true'; fi
+
+
+#RUN if [ "x${SP_VERSION:0:1}" = "3" ]; then \
+
+#RUN if [ "$SPARK_VERSION" = "3.0.1" ]; then \
+#            JAVA_VERSION=11 \
+#            SCALA_VERSION=2.12.12 \
+#            SPARK_GRAPH_PKG="0.8.1-spark3.0-s_2.12/graphframes-0.8.1-spark3.0-s_2.12.jar" \ 
+#            SPARK_DELTA_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar" ; \ 
+#    else \
+#            JAVA_VERSION=8 \ 
+#            SCALA_VERSION=2.11.12 \   
+#            SPARK_GRAPH_PKG="0.8.1-spark2.4-s_2.11/graphframes-0.8.1-spark2.4-s_2.11.jar" \  
+#            SPARK_DELTA_PKG="delta-core_2.11/0.6.1/delta-core_2.11-0.6.1.jar" ; \
+#    fi
+
+
+
+#RUN if [ "$SPARK_VERSION" = "3.0.1" ] ; then export JAVA_VERSION=11 ; else JAVA_VERSION=8 ; fi
+
+RUN if [ "$SPARK_VERSION" = "3.0.1" ] ; then echo "Versao  3" ; else echo "Versao 2" ; fi
+
+RUN echo $JAVA_VERSION
+
+#ARG NEW
+
+#RUN if [ "$NEW" = "True" ]; then \
+#    sed -i 's/\r//' /new.sh && \
+#    chmod +x /new.sh; \
+#  else \
+#    sed -i 's/\r//' /start.sh && \
+#    chmod +x /start.sh; \
+#  fi
+
+#elif
+
+
 ENV SCALA_HOME=/usr/share/scala
 ENV SPARK_HOME=/usr/lib/spark
 
@@ -35,6 +64,8 @@ RUN apt-get update && \
     apt-get install -y wget software-properties-common build-essential
 
 # Install Java 
+#RUN if [ "$SPARK_VERSION" = "3.0.1" ] ; then apt-get install -y openjdk-11-jre-headless libnss3 gnupg2 --fix-missing ; \
+#                                        else apt-get install -y openjdk-8-jre-headless libnss3 gnupg2 --fix-missing  ; fi
 RUN apt-get -y install libnss3 openjdk-${JAVA_VERSION}-jre-headless gnupg2 --fix-missing 
 #&& \
 #    update-alternatives --install "/usr/bin/java" "java" "$(which java)" 1 && \
