@@ -31,7 +31,7 @@ RUN apt-get update && \
     apt-get install -y wget software-properties-common build-essential
 
 # Install Java 
-UN apt-get -y install libnss3 openjdk-${JAVA_VERSION}-jre-headless gnupg2 --fix-missing 
+RUN apt-get -y install libnss3 openjdk-${JAVA_VERSION}-jre-headless gnupg2 --fix-missing 
 #&& \
 #    update-alternatives --install "/usr/bin/java" "java" "$(which java)" 1 && \
 #    update-java-alternatives -s java-1.8.0-openjdk-amd64
