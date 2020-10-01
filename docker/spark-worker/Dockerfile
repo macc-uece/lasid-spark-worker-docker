@@ -4,14 +4,14 @@ FROM lasid/spark-base
 ARG SP_VERSION
 
 ENV SPARK_HOME /usr/lib/spark
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+#ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 #ENV SPARK_WORKER_WEBUI_PORT 8081
 ENV SPARK_WORKER_LOG /var/log/spark
 ENV PATH $PATH:${SPARK_HOME}/bin
 ENV PYSPARK_PYTHON python3
 ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"
 
-RUN if [ "x${SP_VERSION:0:1}" == "3" ] ; then
+RUN if [ "${SP_VERSION}" == "3" ] ; then
         COPY spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf ;
         COPY spark-env_3.sh /usr/lib/spark/conf/spark-env.sh ;
     else
