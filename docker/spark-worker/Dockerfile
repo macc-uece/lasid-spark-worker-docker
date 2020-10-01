@@ -11,15 +11,20 @@ ENV PATH $PATH:${SPARK_HOME}/bin
 ENV PYSPARK_PYTHON python3
 ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"
 
-RUN if [ "${SP_VERSION}" = "3" ] ; 
-   then
-        COPY spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf  ;
+#RUN if [ "${SP_VERSION}" = "3" ] ; 
+#   then
+#        COPY spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf  ;
    #     COPY spark-env_3.sh /usr/lib/spark/conf/spark-env.sh ;
-    else 
-        cp spark-defaults_2.conf /usr/lib/spark/conf/spark-defaults.conf ;
+#    else 
+#        cp spark-defaults_2.conf /usr/lib/spark/conf/spark-defaults.conf ;
     #    cp spark-env_2.sh /usr/lib/spark/conf/spark-env.sh ;
-     fi
-     
+#     fi
+
+
+if [ "${SP_VERSION}" = "3" ] ; then
+    COPY spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf;
+fi
+
 COPY log4j.properties /usr/lib/spark/conf/
 RUN chmod +x /usr/lib/spark/conf/spark-env.sh
 
