@@ -11,6 +11,8 @@ ENV PATH $PATH:${SPARK_HOME}/bin
 ENV PYSPARK_PYTHON python3
 ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"
 
+COPY . .
+
 #RUN if [ "${SP_VERSION}" = "3" ] ; 
 #   then
 #        COPY spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf  ;
