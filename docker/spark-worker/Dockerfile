@@ -22,7 +22,7 @@ COPY . .
     #    cp spark-env_2.sh /usr/lib/spark/conf/spark-env.sh ;
 #     fi
 
-COPY (spark-defaults_3.conf if [ "$SP_VERSION" = "3" ]; fi) /usr/lib/spark/conf/spark-defaults.conf
+COPY (./spark-defaults_3.conf if [ "$SP_VERSION" = "3" ]; fi) /usr/lib/spark/conf/spark-defaults.conf
 #RUN if [ "$SP_VERSION" = "3" ] ; then cp ./spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf ; else \
 #     cp ./spark-defaults_2.conf /usr/lib/spark/conf/spark-defaults.conf ; fi
 
