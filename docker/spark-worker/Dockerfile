@@ -21,7 +21,8 @@ ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:
 #     fi
 
 #COPY (spark-defaults_3.conf if [ "${SP_VERSION}" = "3" ]; fi) /usr/lib/spark/conf/spark-defaults.conf
-RUN if [ "$SP_VERSION" = "3" ] ; then cp ./spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf ; else  ; fi
+RUN if [ "$SP_VERSION" = "3" ] ; then cp ./spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf ; else \
+     cp ./spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf ; fi
 
 
 
