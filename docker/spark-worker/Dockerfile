@@ -14,10 +14,10 @@ ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:
 COPY . .
 
 RUN if [ "$SP_VERSION" = "3" ] ; 
-   then
+   then \
         cp ./spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf  ;
         cp ./spark-env_3.sh /usr/lib/spark/conf/spark-env.sh ;
-    else 
+    else \
         cp ./spark-defaults_2.conf /usr/lib/spark/conf/spark-defaults.conf ;
         cp ./spark-env_2.sh /usr/lib/spark/conf/spark-env.sh ;
     fi
