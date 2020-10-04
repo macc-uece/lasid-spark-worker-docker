@@ -7,8 +7,8 @@ if [ $1 == '3' ] ; then
 elif [ $1 == '2' ] ; then
 	SPARK_VER="2.4.7"
 else
-	echo "Script to build LASID Spark Docker image."
-	echo "Usage: ./build-images.sh <Spark> " 
+	echo "Script to distribute LASID Spark Docker image over servers."
+	echo "Usage: ./dist-images.sh <Spark> " 
 	echo "  <Spark> Spark major number version, i.e., 2 or 3" 
 	exit 1
 fi
