@@ -2,20 +2,20 @@
 
 if [ $1 == '3' ] ; then
 	SPARK_VER="3.0.1"
-	JAVA_VER=11
+	JAVA_VER="11"
 	HADOOP_VER="3.2"
         SPARK_GRAPH_PKG="0.8.1-spark3.0-s_2.12/graphframes-0.8.1-spark3.0-s_2.12.jar" 
         SPARK_DELTA_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar" 
 elif [ $1 == '2' ] ; then
 	SPARK_VER="2.4.7"
-	JAVA_VER=8
+	JAVA_VER="8"
 	HADOOP_VER="2.7"
         SPARK_GRAPH_PKG="0.8.1-spark2.4-s_2.12/graphframes-0.8.1-spark2.4-s_2.12.jar" 
         SPARK_DELTA_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar"
 else
 	echo "Script to build LASID Spark Docker image."
 	echo "Usage: ./build-images.sh <Spark> " 
-	echo "  <Spark> Spark major number version, i.e., 2 or 3" 
+	echo "    <Spark> Spark major number version, i.e., 2 or 3" 
 	exit 1
 fi
 
