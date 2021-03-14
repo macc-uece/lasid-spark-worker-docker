@@ -1,10 +1,10 @@
 #!/bin/bash
 
 if [ $1 == '3' ] ; then
-	SPARK_VER="3.0.1"
+	SPARK_VER="3.1.1"
 	JAVA_VER="11"
 	HADOOP_VER="3.2"
-	SCALA_VERSION="2.12.12"
+	SCALA_VERSION="2.12.13"
         SPARK_GRAPH_PKG="0.8.1-spark3.0-s_2.12/graphframes-0.8.1-spark3.0-s_2.12.jar" 
         SPARK_DELTA_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar" 
 elif [ $1 == '2' ] ; then
