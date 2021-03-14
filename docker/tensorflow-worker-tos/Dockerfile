@@ -29,8 +29,8 @@ RUN ln -s $(which python3) /usr/local/bin/python
 #   tensorflow-gpu
 ARG TF_PACKAGE=tensorflow
 ARG TF_PACKAGE_VERSION=
-RUN python3 -m pip install --no-cache-dir --use-feature=2020-resolver ${TF_PACKAGE}${TF_PACKAGE_VERSION:+==${TF_PACKAGE_VERSION}}
-RUN python3 -m pip install --no-cache-dir --use-feature=2020-resolver tensorflowonspark
+RUN python3 -m pip install --no-cache-dir ${TF_PACKAGE}${TF_PACKAGE_VERSION:+==${TF_PACKAGE_VERSION}}
+RUN python3 -m pip install --no-cache-dir tensorflowonspark
 
 EXPOSE 8080 8081 8082 8083 8084
 
