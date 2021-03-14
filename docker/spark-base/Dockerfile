@@ -5,10 +5,10 @@ FROM ubuntu:bionic
 LABEL image=LASID-Spark-Worker-Base
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
 
-ARG SP_VERSION="3.0.1"
+ARG SP_VERSION="3.1.1"
 ARG HD_VERSION="3.2"
 ARG JV_VERSION="11"
-ARG SC_VERSION="2.12.12"
+ARG SC_VERSION="2.12.13"
 ARG SP_G_PKG="0.8.1-spark3.0-s_2.12/graphframes-0.8.1-spark3.0-s_2.12.jar"
 ARG SP_D_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar"
 
