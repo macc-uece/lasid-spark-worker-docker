@@ -13,7 +13,7 @@ $ cd lasid-spark-worker-docker/
 Build the Docker image and push to DockerHub
 
 ```
-$ ./build-images.sh
+$ ./build-images.sh <Spark version>
 ```
 Check the images created:
 
