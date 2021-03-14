@@ -22,7 +22,7 @@ RUN apt-get update && \
 COPY ./requirements.txt .
 
 RUN pip3 --no-cache-dir install --upgrade setuptools && \
-    pip3 --no-cache-dir install --ignore-installed --use-feature=2020-resolver -r requirements.txt
+    pip3 --no-cache-dir install --ignore-installed -r requirements.txt
 
 # Clean instalation files 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
