@@ -4,3 +4,4 @@ findspark
 opencv-python
 tensorflow
 tensorflowonspark
+spark_tensorflow_distributor
