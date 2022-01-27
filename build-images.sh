@@ -10,7 +10,7 @@ if [ $1 == '3' ] ; then
 	SPARK_GRAPH_JAR="graphframes:graphframes:0.8.2-spark3.2-s_2.12"
 	SPARK_DELTA_JAR="io.delta:delta-core_2.12:1.0.0"
 elif [ $1 == '2' ] ; then
-	SPARK_VER="2.4.7"
+	SPARK_VER="2.4.8"
 	JAVA_VER="8"
 	HADOOP_VER="2.7"
 	SCALA_VERSION="2.11.12"
