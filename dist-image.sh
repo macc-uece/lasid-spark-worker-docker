@@ -3,7 +3,7 @@
 # Download docker image in all servers
 
 if [ $1 == '3' ] ; then
-	SPARK_VER="3.1.1"
+	SPARK_VER="3.2.0"
 elif [ $1 == '2' ] ; then
 	SPARK_VER="2.4.7"
 else
