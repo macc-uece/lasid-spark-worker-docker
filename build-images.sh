@@ -1,12 +1,14 @@
 #!/bin/bash
 
 if [ $1 == '3' ] ; then
-	SPARK_VER="3.1.1"
+	SPARK_VER="3.2.0"
 	JAVA_VER="11"
 	HADOOP_VER="3.2"
-	SCALA_VERSION="2.12.13"
-        SPARK_GRAPH_PKG="0.8.1-spark3.0-s_2.12/graphframes-0.8.1-spark3.0-s_2.12.jar" 
-        SPARK_DELTA_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar" 
+	SCALA_VERSION="2.12.15"
+       	SPARK_GRAPH_PKG="0.8.2-spark3.2-s_2.12/graphframes-0.8.2-spark3.2-s_2.12.jar"
+	SPARK_DELTA_PKG="delta-core_2.12/1.0.0/delta-core_2.12:1.0.0r"
+	SPARK_GRAPH_JAR="graphframes:graphframes:0.8.2-spark3.2-s_2.12"
+	SPARK_DELTA_JAR="io.delta:delta-core_2.12:1.0.0"
 elif [ $1 == '2' ] ; then
 	SPARK_VER="2.4.7"
 	JAVA_VER="8"
@@ -21,8 +23,7 @@ else
 	exit 1
 fi
 
-UBUNTU_VER="bionic"
-
+UBUNTU_VER="focal"
 
 set -e
 
