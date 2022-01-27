@@ -5,10 +5,10 @@ FROM ubuntu:bionic
 LABEL image=LASID-Spark-Worker-Base
 LABEL author="Marcial Fernandez" email="marcial@larces.uece.br"
 
-ARG SP_VERSION="3.1.1"
+ARG SP_VERSION="3.2.0"
 ARG HD_VERSION="3.2"
 ARG JV_VERSION="11"
-ARG SC_VERSION="2.12.13"
+ARG SC_VERSION="2.12.15"
 ARG SP_G_PKG="0.8.1-spark3.0-s_2.12/graphframes-0.8.1-spark3.0-s_2.12.jar"
 ARG SP_D_PKG="delta-core_2.12/0.7.0/delta-core_2.12-0.7.0.jar"
 
@@ -50,15 +50,15 @@ RUN apt-get install -y python3 python3-pip python3-setuptools && \
     pip3 install --upgrade pip
  
 #Spark install
-RUN wget --no-verbose https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
+RUN wget -N --no-check-certificate https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
     tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
     mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /usr/lib/spark && \
     rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
 #Graphframes install
 RUN cd /usr/lib/spark/jars && \
-    wget -nv http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/${SPARK_GRAPH_PKG} && \
-    wget -nv https://repo1.maven.org/maven2/io/delta/${SPARK_DELTA_PKG} && \
+    wget -N --no-check-certificate https://repos.spark-packages.org/graphframes/graphframes/${SPARK_GRAPH_PKG} && \
+    wget -N --no-check-certificate https://repo1.maven.org/maven2/io/delta/${SPARK_DELTA_PKG} && \
     chown -R root:root $SPARK_HOME && \
     pip install graphframes
 
