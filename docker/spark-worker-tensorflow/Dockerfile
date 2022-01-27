@@ -10,7 +10,8 @@ ENV SPARK_HOME /usr/lib/spark
 ENV SPARK_WORKER_LOG /data/software/mgmt/log/spark-log/
 ENV PATH $PATH:${SPARK_HOME}/bin
 ENV PYSPARK_PYTHON python3
-ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"
+#ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"
+ENV SPARK_MASTER "k8s://https://127.0.0.1:16443"
 
 # Install some Tensorflow dependencies
 RUN apt-get update && \
