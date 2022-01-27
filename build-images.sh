@@ -23,6 +23,7 @@ fi
 
 UBUNTU_VER="bionic"
 
+
 set -e
 
 ## Build Docker image
