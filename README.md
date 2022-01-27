@@ -15,6 +15,8 @@ Build the Docker image and push to DockerHub
 ```
 $ ./build-images.sh <Spark version>
 ```
+Where <Spark version> should be "2" ou "3". The release should be changed in build-images.sh script.
+
 Check the images created:
 
 ```
@@ -24,4 +26,3 @@ lasid/spark-worker   latest              7a90258317e2        19 hours ago       
 lasid/spark-base     latest              00550f6beb50        19 hours ago        614MB
 ubuntu               bionic              ccc6e87d482b        8 days ago          64.2MB
 ```
-
