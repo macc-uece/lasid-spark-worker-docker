@@ -1,5 +1,5 @@
 # LASID Spark Worker Docker Image
-Create Spark Mesos Worker image on Docker for LASID/UECE Cluster
+Create Spark Worker Docker image for LASID/UECE Kubernetes Cluster
 
 # Introduction
 
