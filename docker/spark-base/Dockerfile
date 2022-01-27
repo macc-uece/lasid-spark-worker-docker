@@ -29,20 +29,20 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    apt-get install -y wget software-properties-common build-essential gnupg2
+    apt-get install -y wget software-properties-common build-essential gnupg2 libnss3
     
 RUN truncate -s0 /tmp/preseed.cfg && \
     (echo "tzdata tzdata/Areas select America" >> /tmp/preseed.cfg) && \
-    (echo "tzdata tzdata/Zones/America select Los_Angeles" >> /tmp/preseed.cfg) && \
+    (echo "tzdata tzdata/Zones/America select Fortaleza" >> /tmp/preseed.cfg) && \
     debconf-set-selections /tmp/preseed.cfg && \
     rm -f /etc/timezone /etc/localtime && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
-    apt-get install -y tzdata
+    apt-get install -qqy --no-install-recommends tzdata
 
 # Install Java 
 RUN apt-get -y install openjdk-${JAVA_VERSION}-jre-headless --fix-missing 
-# libnss3
+# 
 #&& \
 #    update-alternatives --install "/usr/bin/java" "java" "$(which java)" 1 && \
 #    update-java-alternatives -s java-1.8.0-openjdk-amd64
