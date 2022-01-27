@@ -1,5 +1,5 @@
 # Dockerfile for LASID Docker Spark Worker Docker Base Image
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 #LABEL maintainer="Marcial Fernandez "marcial@larces.uece.br"
 LABEL image=LASID-Spark-Worker-Base
