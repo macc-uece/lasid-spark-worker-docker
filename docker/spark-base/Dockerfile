@@ -29,7 +29,7 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    apt-get install -y wget software-properties-common build-essential
+    apt-get install -y wget software-properties-common build-essential gnupg2
     
 RUN truncate -s0 /tmp/preseed.cfg && \
     (echo "tzdata tzdata/Areas select America" >> /tmp/preseed.cfg) && \
@@ -41,7 +41,8 @@ RUN truncate -s0 /tmp/preseed.cfg && \
     apt-get install -y tzdata
 
 # Install Java 
-RUN apt-get -y install libnss3 openjdk-${JAVA_VERSION}-jre-headless gnupg2 --fix-missing 
+RUN apt-get -y install openjdk-${JAVA_VERSION}-jre-headless --fix-missing 
+# libnss3
 #&& \
 #    update-alternatives --install "/usr/bin/java" "java" "$(which java)" 1 && \
 #    update-java-alternatives -s java-1.8.0-openjdk-amd64
