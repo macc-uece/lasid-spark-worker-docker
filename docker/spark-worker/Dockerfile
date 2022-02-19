@@ -1,7 +1,10 @@
 # Build Spark Docker Worker
 FROM lasid/spark-base
 
-ARG SP_VERSION="3.2.0"
+ARG SP_VERSION="3.2.1"
+
+# Reset to root to run installation tasks
+USER 0
 
 ENV SPARK_HOME /usr/lib/spark
 #ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
@@ -9,14 +12,15 @@ ENV SPARK_HOME /usr/lib/spark
 ENV SPARK_WORKER_LOG /var/log/spark
 ENV PATH $PATH:${SPARK_HOME}/bin
 ENV PYSPARK_PYTHON python3
-ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"
+#ENV SPARK_MASTER "mesos://zk://10.129.64.20:2181,10.129.64.10:2181,10.129.64.30:2181/mesos"
+ENV SPARK_MASTER "k8s://https://127.0.0.1:16443"
 
 COPY . .
 
-RUN if [ "$SP_VERSION" = "3.2.0" ] ; then cp ./spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf ; else \
+RUN if [ "$SP_VERSION" = "3.2.1" ] ; then cp ./spark-defaults_3.conf /usr/lib/spark/conf/spark-defaults.conf ; else \
      cp ./spark-defaults_2.conf /usr/lib/spark/conf/spark-defaults.conf ; fi
 
-RUN if [ "$SP_VERSION" = "3.2.0" ] ; then cp ./spark-env_3.sh /usr/lib/spark/conf/spark-env.sh ; else \
+RUN if [ "$SP_VERSION" = "3.2.1" ] ; then cp ./spark-env_3.sh /usr/lib/spark/conf/spark-env.sh ; else \
      cp ./spark-env_2.sh /usr/lib/spark/conf/spark-env.sh ; fi
 
 COPY log4j.properties /usr/lib/spark/conf/
